@@ -9,6 +9,7 @@ public class Window extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private Canvas canvas;
+	static Input input = new Input();
 
 	public Window(String title, int width, int height) {
 		setSize(width, height);
@@ -22,6 +23,7 @@ public class Window extends JFrame {
 		canvas.setSize(width, height);
 		canvas.setFocusable(true);
 		add(canvas);
+		addKeyListener(input);
 	}
 	
 	//getters and setters
