@@ -34,30 +34,17 @@ public class Board {
 	public int countNeighbours(int x, int y) {
 		int count = 0;
 		
-		if(x > 0 && x < board.length-1 && y > 0 && y < board[0].length-1) {
-			if(board[x-1][y-1]) {
-				count++;
-			}
-			if(board[x][y-1]) {
-				count++;
-			}
-			if(board[x+1][y-1]) {
-				count++;
-			}
-			if(board[x-1][y]) {
-				count++;
-			}
-			if(board[x+1][y]) {
-				count++;
-			}
-			if(board[x-1][y+1]) {
-				count++;
-			}
-			if(board[x][y+1]) {
-				count++;
-			}
-			if(board[x+1][y+1]) {
-				count++;
+		for(int i = x-1; i <= x+1; i++) {
+			for(int j = y-1; j <= y+1; j++) {
+				if(i != x || j != y) {
+					try {
+						if (getState(i, j, board)) {
+							count++;
+						} 
+					} catch (ArrayIndexOutOfBoundsException e) {
+						// TODO: handle exception
+					}
+				}
 			}
 		}
 		
