@@ -6,17 +6,19 @@ import java.awt.image.BufferStrategy;
 
 public class GameOfLife {
 
-	static Board board = new Board();
+	static Board board;
+	static Window window;
 	static Thread thread;
 	
 	public static void start() {
 		thread = new Thread();
 		thread.start();
+		window = new Window("game", 800, 500);
+		board = new Board(window.getCanvas().getWidth(), window.getCanvas().getHeight());
 		board.setUp();
 	}
 	
 	public static void render() {
-		Window window = new Window("game", 800, 500);
 		BufferStrategy bs = window.getCanvas().getBufferStrategy();
 		if(bs == null) {
 			window.getCanvas().createBufferStrategy(2);
@@ -33,7 +35,7 @@ public class GameOfLife {
 			for(int i = 0; i < board.getBoard(0).length; i++) {
 				for(int j = 0; j < board.getBoard(0)[0].length; j++) {
 					if(board.getState(i, j, board.getBoard(0))) {
-						g2d.fillRect(i*4, j*4, 4, 4);
+						g2d.fillRect(i*board.getCellSize(), j*board.getCellSize(), board.getCellSize(), board.getCellSize());
 					}
 				}
 			}

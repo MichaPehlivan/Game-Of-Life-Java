@@ -6,7 +6,13 @@ public class Board {
 
 	private boolean[][] board = new boolean[200][125];
 	private boolean[][] newboard = new boolean[200][125];
+	int cellsize = 4;
 	Random random = new Random();
+	
+	public Board(int width, int height) {
+		board = new boolean[width/cellsize][height/cellsize];
+		newboard = new boolean[width/cellsize][height/cellsize];
+	}
 	
 	public boolean[][] getBoard(int index) {
 		if(index == 0) {
@@ -92,6 +98,10 @@ public class Board {
 				setState(i, j, board, random.nextBoolean());
 			}
 		}
+	}
+	
+	public int getCellSize() {
+		return this.cellsize;
 	}
 
 }
