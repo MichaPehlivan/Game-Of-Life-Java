@@ -15,13 +15,8 @@ public class Board {
 	}
 	
 	//getters and setters
-	public boolean[][] getBoard(int index) {
-		if(index == 0) {
-			return board;
-		}
-		else {
-			return newboard;
-		}
+	public boolean[][] getBoard() {
+		return this.board;
 	}
 	
 	public boolean getState(int x, int y, boolean[][] board) {
@@ -76,13 +71,13 @@ public class Board {
 	public void updateBoard() {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
-				newboard[i][j] = getNewState(i, j);
+				setState(i, j, newboard, getNewState(i, j));
 			}
 		}
 		
 		for(int x = 0; x < newboard.length; x++) {
 			for(int y = 0; y < newboard[x].length; y++) {
-				board[x][y] = getState(x, y, newboard);
+				setState(x, y, board, getState(x, y, newboard));
 			}
 		}
 	}
