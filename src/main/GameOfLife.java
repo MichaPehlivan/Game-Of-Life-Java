@@ -11,6 +11,7 @@ public class GameOfLife {
 	static Input input = new Input();
 	static Thread thread;
 	
+	//board and window setup
 	public static void start() {
 		thread = new Thread();
 		thread.start();
@@ -19,6 +20,7 @@ public class GameOfLife {
 		board.setUp();
 	}
 	
+	//renders the board
 	public static void render() {
 		BufferStrategy bs = window.getCanvas().getBufferStrategy();
 		if(bs == null) {
@@ -37,8 +39,7 @@ public class GameOfLife {
 				for (int i = 0; i < board.getBoard(0).length; i++) {
 					for (int j = 0; j < board.getBoard(0)[0].length; j++) {
 						if (board.getState(i, j, board.getBoard(0))) {
-							g2d.fillRect(i * board.getCellSize(), j * board.getCellSize(), board.getCellSize(),
-									board.getCellSize());
+							g2d.fillRect(i * board.getCellSize(), j * board.getCellSize(), board.getCellSize(), board.getCellSize());
 						}
 					}
 				}

@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Board {
 
-	private boolean[][] board = new boolean[200][125];
-	private boolean[][] newboard = new boolean[200][125];
+	private boolean[][] board;
+	private boolean[][] newboard;
 	int cellsize = 4;
 	Random random = new Random();
 	
@@ -14,6 +14,7 @@ public class Board {
 		newboard = new boolean[width/cellsize][height/cellsize];
 	}
 	
+	//getters and setters
 	public boolean[][] getBoard(int index) {
 		if(index == 0) {
 			return board;
@@ -31,6 +32,11 @@ public class Board {
 		board[x][y] = state;
 	}
 	
+	public int getCellSize() {
+		return this.cellsize;
+	}
+	
+	//counts number of alive cells next to cell
 	public int countNeighbours(int x, int y) {
 		int count = 0;
 		
@@ -42,7 +48,7 @@ public class Board {
 							count++;
 						} 
 					} catch (ArrayIndexOutOfBoundsException e) {
-						// TODO: handle exception
+						count += 0;
 					}
 				}
 			}
@@ -51,6 +57,7 @@ public class Board {
 		return count;
 	}
 	
+	//returns state of cell in the next generation
 	public boolean getNewState(int x, int y) {
 		int count = countNeighbours(x, y);
 		boolean state = getState(x, y, board);
@@ -65,6 +72,7 @@ public class Board {
 		return false;
 	}
 	
+	//changes states to those of the next generation
 	public void updateBoard() {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
@@ -74,11 +82,12 @@ public class Board {
 		
 		for(int x = 0; x < newboard.length; x++) {
 			for(int y = 0; y < newboard[x].length; y++) {
-				board[x][y] = newboard[x][y];
+				board[x][y] = getState(x, y, newboard);
 			}
 		}
 	}
 	
+	//assigns every cell a random state
 	public void setUp() {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
@@ -86,9 +95,4 @@ public class Board {
 			}
 		}
 	}
-	
-	public int getCellSize() {
-		return this.cellsize;
-	}
-
 }
