@@ -47,19 +47,23 @@ public class GameOfLife {
 			g2d.dispose();
 			bs.show();
 			
-			while(input.getPaused()) {
-				try {
-					Thread.sleep(1);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			
+			time();
+		}
+	}
+	
+	public static void time() {
+		while(input.getPaused()) {
 			try {
-				Thread.sleep(16);
+				Thread.sleep(0);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		try {
+			Thread.sleep(16);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
