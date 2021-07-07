@@ -37,7 +37,7 @@ public class GameOfLife {
 
 			g2d.setColor(Color.white);
 			for (int i = 0; i < board.getBoard().length; i++) {
-				for (int j = 0; j < board.getBoard()[0].length; j++) {
+				for (int j = 0; j < board.getBoard()[0].length; j++) {					 
 					if (board.getState(i, j, board.getBoard())) {
 						g2d.fillRect(i * board.getCellSize(), j * board.getCellSize(), board.getCellSize(), board.getCellSize());
 					}
@@ -51,6 +51,7 @@ public class GameOfLife {
 		}
 	}
 	
+	//pausing and framerate handeling
 	public static void time() {
 		while(input.getPaused()) {
 			try {
