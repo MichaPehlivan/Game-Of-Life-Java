@@ -30,11 +30,11 @@ public class GameOfLife {
 		
 		while (true) {
 			window.getCanvas().setBackground(Color.black);
+			window.requestFocusInWindow();
 			Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
 			
 			if (!input.getPaused()) {
 				g2d.clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-
 				board.updateBoard();
 			}
 
@@ -50,12 +50,12 @@ public class GameOfLife {
 			g2d.dispose();
 			bs.show();
 			
-			time();
+			tick();
 		}
 	}
 	
-	//pausing and framerate handeling
-	public static void time() {
+	//timing for framerate
+	public static void tick() {
 		try {
 			Thread.sleep(16);
 		} catch (InterruptedException e) {
