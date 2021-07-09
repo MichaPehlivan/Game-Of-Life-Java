@@ -20,6 +20,9 @@ public class Board {
 	}
 	
 	public boolean getState(int x, int y, boolean[][] board) {
+		if(x < 0 || y < 0 || x > board.length-1 || y > board[0].length-1) {
+			return false;
+		}
 		return board[x][y];
 	}
 	
@@ -38,12 +41,8 @@ public class Board {
 		for(int i = x-1; i <= x+1; i++) {
 			for(int j = y-1; j <= y+1; j++) {
 				if(i != x || j != y) {
-					try {
-						if (getState(i, j, board)) {
-							count++;
-						} 
-					} catch (ArrayIndexOutOfBoundsException e) {
-						count += 0;
+					if (getState(i, j, board)) {
+						count++;
 					}
 				}
 			}
