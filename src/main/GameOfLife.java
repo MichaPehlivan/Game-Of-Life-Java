@@ -60,11 +60,15 @@ public class GameOfLife {
 		}
 	}
 
+	//main loop
 	public static void main(String[] args) {
 		start();
 		while(true) {
+			long start = System.currentTimeMillis();
 			render();
-			tick(16);
+			long end = System.currentTimeMillis();
+			long delta = end - start;
+			tick(Math.max(0, 16-delta));
 		}
 	}
 
