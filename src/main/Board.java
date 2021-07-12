@@ -2,6 +2,10 @@ package main;
 
 import java.util.Random;
 
+/**
+ * class to store and use the board, as well as the states of the cells
+ * @author MichaPehlivan
+ */
 public class Board {
 
 	private boolean[][] board;

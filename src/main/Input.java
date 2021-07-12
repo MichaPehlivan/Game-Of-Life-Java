@@ -3,17 +3,20 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * class for handeling input
+ * @author MichaPehlivan
+ */
 public class Input implements KeyListener {
 	
 	private static boolean paused;
 
 	public Input() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -26,7 +29,6 @@ public class Input implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 	

@@ -5,6 +5,10 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
+/**
+ * class for setting up the window for the game
+ * @author MichaPehlivan
+ */
 public class Window extends JFrame {
 	
 	private static final long serialVersionUID = 1L;

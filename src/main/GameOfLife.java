@@ -4,8 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
+/**
+ * main class containing render code and main loop
+ * @author MichaPehlivan
+ */
 public class GameOfLife {
-
+	
 	static Board board;
 	static Window window;
 	static Input input = new Input();
