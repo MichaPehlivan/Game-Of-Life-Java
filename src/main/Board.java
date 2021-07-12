@@ -30,10 +30,6 @@ public class Board {
 		return board[x][y];
 	}
 	
-	public void setState(int x, int y, boolean[][] board, boolean state) {
-		board[x][y] = state;
-	}
-	
 	public int getCellSize() {
 		return this.cellsize;
 	}
@@ -74,13 +70,13 @@ public class Board {
 	public void updateBoard() {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
-				setState(i, j, newboard, getNewState(i, j));
+				newboard[i][j] = getNewState(i, j);
 			}
 		}
 		
 		for(int x = 0; x < newboard.length; x++) {
 			for(int y = 0; y < newboard[x].length; y++) {
-				setState(x, y, board, getState(x, y, newboard));
+				board[x][y] = getState(x, y, newboard);
 			}
 		}
 	}
@@ -89,7 +85,7 @@ public class Board {
 	public void setUp() {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
-				setState(i, j, board, random.nextBoolean());
+				board[i][j] = random.nextBoolean();
 			}
 		}
 	}
