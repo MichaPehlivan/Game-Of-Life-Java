@@ -13,13 +13,10 @@ public class GameOfLife {
 	static Board board;
 	static Window window;
 	static Input input = new Input();
-	static Thread thread;
 	static BufferStrategy bs;
 	
 	//board and window setup
 	public static void start() {
-		thread = new Thread();
-		thread.start();
 		window = new Window("game", 800, 500);
 		board = new Board(window.getCanvas().getWidth(), window.getCanvas().getHeight());
 		board.setUp();
