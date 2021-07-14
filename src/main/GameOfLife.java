@@ -53,12 +53,12 @@ public class GameOfLife {
 			g2d.dispose();
 			bs.show();
 			
-			tick(16);
+			pause(16);
 		}
 	}
 	
 	//timing for framerate
-	public static void tick(long time) {
+	public static void pause(long time) {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
