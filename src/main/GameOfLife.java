@@ -30,31 +30,24 @@ public class GameOfLife {
 		}
 		bs = window.getCanvas().getBufferStrategy();
 			
-		while (true) {
-			window.getCanvas().setBackground(Color.black);
-			window.requestFocusInWindow();
-			Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
-			
-			if (!input.getPaused()) {
-				g2d.clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-				board.updateBoard();
-			}
+		window.getCanvas().setBackground(Color.black);
+		window.requestFocusInWindow();
+		Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
+		
+		g2d.clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
 
-			g2d.setColor(Color.white);
-			for (int i = 0; i < board.getBoard().length; i++) {
-				for (int j = 0; j < board.getBoard()[0].length; j++) {
-					if (board.getState(i, j, board.getBoard())) {
-						g2d.fillRect(i * board.getCellSize(), j * board.getCellSize(), board.getCellSize(),
-								board.getCellSize());
-					}
+		g2d.setColor(Color.white);
+		for (int i = 0; i < board.getBoard().length; i++) {
+			for (int j = 0; j < board.getBoard()[0].length; j++) {
+				if (board.getState(i, j, board.getBoard())) {
+					g2d.fillRect(i * board.getCellSize(), j * board.getCellSize(), board.getCellSize(),
+							board.getCellSize());
 				}
 			}
-
-			g2d.dispose();
-			bs.show();
-			
-			pause(16);
 		}
+
+		g2d.dispose();
+		bs.show();
 	}
 	
 	//timing for framerate
@@ -69,7 +62,11 @@ public class GameOfLife {
 	//main loop
 	public static void main(String[] args) {
 		start();
-		render();
+		while(true) {
+			board.updateBoard();
+			render();
+			pause(16);
+		}
 	}
 
 }
