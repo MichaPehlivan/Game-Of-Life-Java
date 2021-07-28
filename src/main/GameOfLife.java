@@ -63,7 +63,9 @@ public class GameOfLife {
 	public static void main(String[] args) {
 		start();
 		while(true) {
-			board.updateBoard();
+			if(!input.getPaused()) {
+				board.updateBoard();
+			}
 			render();
 			pause(16);
 		}
