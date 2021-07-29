@@ -12,24 +12,26 @@ public class GameOfLife {
 	
 	static Board board;
 	static Window window;
-	static Input input = new Input();
 	static BufferStrategy bs;
+	
+	private static final int FPS = 60;
+	private static final int FRAMETIME_MS = 1000/FPS;
 	
 	//board and window setup
 	public static void start() {
 		window = new Window("game", 800, 500);
 		board = new Board(window.getCanvas().getWidth(), window.getCanvas().getHeight());
 		board.setUp();
-	}
-	
-	//renders the board
-	public static void render() {
+		
 		bs = window.getCanvas().getBufferStrategy();
 		if(bs == null) {
 			window.getCanvas().createBufferStrategy(2);
 		}
 		bs = window.getCanvas().getBufferStrategy();
-			
+	}
+	
+	//renders the board
+	public static void render() {
 		window.getCanvas().setBackground(Color.black);
 		window.requestFocusInWindow();
 		Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
@@ -40,8 +42,7 @@ public class GameOfLife {
 		for (int i = 0; i < board.getBoard().length; i++) {
 			for (int j = 0; j < board.getBoard()[0].length; j++) {
 				if (board.getState(i, j, board.getBoard())) {
-					g2d.fillRect(i * board.getCellSize(), j * board.getCellSize(), board.getCellSize(),
-							board.getCellSize());
+					g2d.fillRect(i * Board.cellsize, j * Board.cellsize, Board.cellsize, Board.cellsize);
 				}
 			}
 		}
@@ -63,11 +64,18 @@ public class GameOfLife {
 	public static void main(String[] args) {
 		start();
 		while(true) {
-			if(!input.getPaused()) {
+			long start = System.nanoTime();
+			
+			if(!Input.isPaused()) {
 				board.updateBoard();
 			}
 			render();
-			pause(16);
+			
+			long deltatime = (System.nanoTime() - start) / 1000000;
+			
+			if(deltatime < FRAMETIME_MS) {
+				pause(FRAMETIME_MS - deltatime);
+			}
 		}
 	}
 

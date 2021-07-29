@@ -10,8 +10,7 @@ public class Board {
 
 	private boolean[][] board;
 	private boolean[][] newboard;
-	int cellsize = 4;
-	Random random = new Random();
+	public static final int cellsize = 4;
 	
 	public Board(int width, int height) {
 		board = new boolean[width/cellsize][height/cellsize];
@@ -28,10 +27,6 @@ public class Board {
 			return false;
 		}
 		return board[x][y];
-	}
-	
-	public int getCellSize() {
-		return this.cellsize;
 	}
 	
 	//counts number of alive cells next to cell
@@ -83,6 +78,8 @@ public class Board {
 	
 	//assigns every cell a random state
 	public void setUp() {
+		Random random = new Random();
+		
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
 				board[i][j] = random.nextBoolean();

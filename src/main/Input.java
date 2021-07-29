@@ -33,7 +33,7 @@ public class Input implements KeyListener {
 	}
 	
 	//getters and setters
-	public boolean getPaused() {
+	public static boolean isPaused() {
 		return paused;
 	}
 
